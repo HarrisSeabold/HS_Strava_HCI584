@@ -1,2 +1,0 @@
-#strava app
-print("hello")
