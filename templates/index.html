@@ -1,5 +1,12 @@
-{% extends 'base.html' %}
-
-{% block content %}
-    <h1>{% block title %} Welcome to H_Strava {% endblock %}</h1>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
+    <title>HS_Trava</title>
+</head>
+<body>
+   <h1>Welcome to <img src="{{ url_for('static', filename='HS_Trava_logo.png') }}"
+    class="image"/></h1>
+</body>
+</html>
