@@ -5,15 +5,22 @@
     <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
     <title>HS_Trava</title>
 </head>
+
 <body>
+
+    <a href="/">Home</a>
+    <a href="/demodata_results">Results</a>
+
    <h1>Welcome to <img src="{{ url_for('static', filename='HS_Trava_logo.png') }}"
     class="image"/></h1>
 
     <form action="/process" method="POST">
+        <h2>Enter your strava keys (broken):</h2>
         <input type="text" name="strava_id" placeholder="eneter your id"><br>
         <input type="text" name="strava_refresh" placeholder="enter your refresh token"><br>
         <input type="text" name="strava_secret" placeholder="enter your secret"><br>
         <button type="submit">Submit</button>
+    </form>
 
     <script>
         function submitForm(event) {
@@ -35,5 +42,11 @@
             });
         }
     </script>
+
+    </form action="/demodata_process" method="POST" enctype="multipart/form-data">
+        <h2>Upload your data:</h2>
+        <input type="file" name="fileupload" placeholder="upload a file"><br>
+        <button type="submit">Upload</button>
+    </form>
 </body>
 </html>
