@@ -8,18 +8,55 @@
 
 <body>
 
-    <a href="/">Home</a>
-    <a href="/demodata_results">Results</a>
-
    <h1>Welcome to <img src="{{ url_for('static', filename='HS_Trava_logo.png') }}"
     class="image"/></h1>
 
-    <form action="/process" method="POST">
-        <h2>Enter your strava keys (broken):</h2>
-        <input type="text" name="strava_id" placeholder="eneter your id"><br>
-        <input type="text" name="strava_refresh" placeholder="enter your refresh token"><br>
-        <input type="text" name="strava_secret" placeholder="enter your secret"><br>
-        <button type="submit">Submit</button>
+    <form action="/make_chart" method="POST">
+
+        <h2>Build a workout comparison:</h2>
+
+        <label for="index1">Select a recent activity:</label>
+        <select name="index1" id="index1">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+        </select> 
+
+        <label for="index2">Select a recent activity to compare:</label>
+        <select name="index2" id="index2">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+        </select> 
+
+        <div></div>
+        <div></div>
+        <label for="metric">Select a metric:</label>
+        <select name="metric" id="metric">
+          <option value="distance">distance</option>
+          <option value="elapsed_time">elapsed time</option>
+          <option value="kudos_count">kudos count</option>
+          <option value="average_speed">average speed</option>
+          <option value="max_speed">max speed</option>
+
+        </select> 
+
+
+        <button type="submit">create comparison</button>
     </form>
 
     <script>
@@ -28,7 +65,7 @@
                 
             // Make an AJAX request to submit the form data
             var formData = new FormData(event.target);
-            fetch('/process', {
+            fetch('/make_chart', {
                 method: 'POST',
                 body: formData
             })
@@ -43,10 +80,5 @@
         }
     </script>
 
-    </form action="/demodata_process" method="POST" enctype="multipart/form-data">
-        <h2>Upload your data:</h2>
-        <input type="file" name="fileupload" placeholder="upload a file"><br>
-        <button type="submit">Upload</button>
-    </form>
 </body>
 </html>
