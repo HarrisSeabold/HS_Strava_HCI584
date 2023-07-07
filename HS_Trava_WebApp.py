@@ -69,41 +69,5 @@ def make_chart():
 
     return f"Activity 1: {name1}, {metric}: {metric1} | Activity 2: {name2}, {metric}: {metric2}"
 
-
-"""@app.route('/demodata_process', methods=['POST'])
-def demodata_process():
-    uploaded_file = request.files['fileupload']
-    
-    if uploaded_file.filename != '':
-        # Save the uploaded file with a secure filename
-        filename = secure_filename(uploaded_file.filename)
-        uploaded_file.save(os.path.join('uploads', filename))
-
-        with open(uploaded_file.filename, 'r') as file:
-            file_content = file.read()
-            
-            # Perform your analysis on the file content
-            # You can process the text, extract information, perform calculations, etc.
-            
-            line_count = file_content.count('\n') + 1
-            
-            x = ['Line Count']
-            y = [line_count]
-            plt.bar(x, y)
-            
-            # Convert the plot to an image
-            image = io.BytesIO()
-            plt.savefig(image, format='png')
-            image.seek(0)
-            plot_url = base64.b64encode(image.getvalue()).decode()
-        
-        # Delete the uploaded file
-        os.remove(uploaded_file.filename)
-        
-        return render_template('demodata_results.html', plot_url=plot_url)
-    else:
-        return 'No file selected!'
-"""
-
 if __name__ == '__main__':
     app.run(port=5000)
