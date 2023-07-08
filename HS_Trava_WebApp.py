@@ -52,20 +52,16 @@ def make_chart():
     metric2 = activity2.get(metric, 'N/A')
 
 
-    metric_label = metric  # Replace with an appropriate label for your metric
+    metric_label = metric
 
-    # Create data for the bar chart
     activities = [name1, name2]
     metrics = [metric1, metric2]
 
-    # Plot the bar chart
     plt.bar(activities, metrics)
     plt.xlabel('Activity')
     plt.ylabel(metric_label)
     plt.title('Comparison of Metrics')
     plt.show()
-
-    #return "Bar chart generated"
 
     return f"Activity 1: {name1}, {metric}: {metric1} | Activity 2: {name2}, {metric}: {metric2}"
 
