@@ -14,6 +14,10 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
+    return render_template('landing.html')
+
+@app.route('/indexpage')
+def indexpage():\
     return render_template('index.html')
 
 @app.route('/make_chart', methods=['POST'])

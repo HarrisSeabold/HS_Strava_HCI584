@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <link rel="icon" href="{{ url_for('static', filename='HS_Trava_Favicon.png') }}">
+    <title>HS_Trava</title>
+</head>
+
+<body>
+    <div class="parallax-background">
+
+        <div class="header-container">
+            <div class="header-link"><h5><a href="indexpage">get started</a></h5></div>
+            <div class="header-link"><h5>dashboard</h5></div>
+            <div class="header-link right-align"><h5>login</h5></div>
+        </div>
+
+        <div class="title-block">
+            <div>
+
+                <img src="{{ url_for('static', filename='HS_Trava_logo.png') }}"
+                    class="image"/>
+
+                <div>        
+                    <h3 style="padding-top: 20px;">a program for building visualizations based on your<br>personal running and cycling data</h3>
+                </div>
+
+                <div>
+                    <p style="padding-top: 40px;">powered by <span style="color:#F05023;">Strava</span></p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="get-started-block">
+            <div style = "padding-right: 50px;">
+                <p>new to HS_Trava?</p>
+                <a href="indexpage">
+                    <button class="custom-button">get started</button>
+                </a>
+            </div>
+            <div style = "padding-left: 50px;">
+                <p>or already have an account?</p>
+                <a href="indexpage">
+                    <button class="custom-button">login</button>
+                </a>
+            </div>
+        </div>
+
+        <div class="blank-strip">
+
+        </div>
+
+        <div class="description-block">
+            <div class="image-container">
+                <img src="{{ url_for('static', filename='descripimage1.jpg') }}" class="image" />
+            </div>
+
+            <div class="text-container">
+                <div>
+                    <h2>training for your next race?</h>
+                </div>
+
+                <div>
+                    <p>visualize your progress with HS_Trava's<br><span style="color:#F05023;">powerful</span> visualization tools</p>
+                </div>
+            </div>
+        </div> 
+
+        <div class="blank-strip"> 
+            
+        </div>
+
+        <div class="description-block">
+
+            <div class="text-container">
+                <div>
+                    <h2>running solo?</h2>
+                </div>
+
+                <div>
+                    <p>support your training log with <span style="color:#F05023;">easy to build</span><br>printable metrics</p>
+                </div>
+            </div>
+
+            <div class="image-container">
+                <img src="{{ url_for('static', filename='descripimage2.jpg') }}" class="image" />
+            </div>
+
+        </div>
+
+        <div class="blank-strip">
+
+        </div>
+
+        <div class="description-block">
+
+            <div class="image-container">
+                <img src="{{ url_for('static', filename='descripimage3.jpg') }}" class="image" />
+            </div>
+
+            <div class="text-container">
+                <div>
+                    <h2>ready to begin?</h2>
+                </div>
+
+                <div>
+                    <p>get started now building <span style="color:#F05023;">your own</span> running<br>and cycling data visualizations</p>
+                </div>
+                <div style="padding: 20px 0px 0px 0px;">
+                    <button class="custom-button">click here</button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer-block">
+            <div class="left-footer-content">
+            <img src="{{ url_for('static', filename='api_logo_pwrdBy_strava_horiz_light.png') }}" class="image" />
+            </div>
+
+            <div class="right-footer-content">
+            <p><span style="color:#042237;">created by Harris Seabold for HCI 584 at Iowa State University</span></p>
+            </div>
+        </div>
+    </div>
+</body>
