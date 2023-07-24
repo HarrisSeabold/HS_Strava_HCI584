@@ -1,0 +1,92 @@
+body {
+    background-color: #042237;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+}
+
+.center-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 100px;
+}
+
+.header-link {
+    padding-left: 30px;
+}
+
+.right-align {
+    margin-left: auto;
+    padding-right: 30px;
+}
+
+.custom-button {
+    background-color: #F05023;
+    color: white;
+    font-weight: bold;
+    width: 250px;
+    height: 60px;
+    border-radius: 10px;
+    font-size: 25px;
+    text-decoration: none;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+}
+
+.login-userinfo {
+    flex: 1;
+    width: 300px;
+    height: 32px;
+    font-size: 20px;
+    border-radius: 15px;
+    padding: 8px;
+    border: none;
+    outline: none;
+}
+
+.login-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center; 
+    align-items: center;
+    padding: 100px;
+    width: 100%;
+    
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    font-weight: bold;
+}
+
+h2 {
+    padding-top: -20px;
+    padding-bottom: 10px;
+    font-size: 33px;
+    color: white;
+}
+
+h3 {
+    font-size:size 30px;
+    color: white;
+}
+
+h5 {
+    font: size 24px;
+    font-weight: bolder;
+    color:#042237;
+}
+
+p {
+    font-size: size 24px;
+    color: white;
+}

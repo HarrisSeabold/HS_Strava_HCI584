@@ -1,8 +1,9 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session, jsonify
 import requests
 import urllib3
 import matplotlib.pyplot as plt
 from werkzeug.utils import secure_filename
+from datetime import datetime, timedelta
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -12,16 +13,25 @@ refresh = '918b3db21b495d1aaddeb81147d444d8718a5c23'
 
 app = Flask(__name__)
 
+# Details on the Secret Key: https://flask.palletsprojects.com/en/2.3.x/config/#SECRET_KEY
+# NOTE: The secret key is used to cryptographically-sign the cookies used for storing
+#       the session data.
+
+app.secret_key = 'SECRET_SAUCE'
+
 @app.route('/')
 def index():
     return render_template('landing.html')
+
+@app.route('/login')
+def login():
+    return render_template('login.html')
 
 @app.route('/indexpage')
 def indexpage():\
     return render_template('index.html')
 
-@app.route('/make_chart', methods=['POST'])
-def make_chart():
+def data_analysis(timeframe="last_month", data_type="run", metric="distance", sum_activities = 0):
     
     auth_url = "https://www.strava.com/oauth/token"
     activites_url = "https://www.strava.com/api/v3/athlete/activities"
@@ -43,31 +53,92 @@ def make_chart():
     param = {'per_page': 200, 'page': 1}
     my_dataset = requests.get(activites_url, headers=header, params=param).json()
 
-    index1 = int(request.form.get('index1'))
-    activity1 = my_dataset[index1]
-    index2 = int(request.form.get('index2'))
-    activity2 = my_dataset[index2]
-    metric = request.form.get('metric')
+    if data_type == "run":
+        filtered_activities = [activity for activity in my_dataset if activity['type'] == 'Run']
+    elif data_type == "bike":
+        filtered_activities = [activity for activity in my_dataset if activity['type'] == 'Ride']
+    else:
+        filtered_activities = [activity for activity in my_dataset if activity['type'] == 'Run']
+        pass
 
-    name1 = activity1.get('name', 'N/A')
-    metric1 = activity1.get(metric, 'N/A')
+    # Filter activities based on the selected timeframe
+    if timeframe == "last_year":
+        start_date = datetime.now() - timedelta(days=365)
+    elif timeframe == "ytd":
+        start_date = datetime(datetime.now().year, 1, 1)
+    elif timeframe == "last_month":
+        start_date = datetime.now() - timedelta(days=30)
+    elif timeframe == "last_week":
+        start_date = datetime.now() - timedelta(days=7)        
+    else:
+        # Default to last month
+        start_date = datetime.now() - timedelta(days=30)
 
-    name2 = activity2.get('name', 'N/A')
-    metric2 = activity2.get(metric, 'N/A')
+    if timeframe == "last_5":
+        filtered_activities = [filtered_activities[0],filtered_activities[1],filtered_activities[2],filtered_activities[3],filtered_activities[4]]
+    else:
+        filtered_activities = [activity for activity in my_dataset if datetime.strptime(activity['start_date'], '%Y-%m-%dT%H:%M:%SZ') > start_date]
 
+    # Calculate the total of the selected metric
+    cumulative_sum_list = []
+    cumulative_sum = 0
+    activity_data_list = []
 
-    metric_label = metric
+    for activity in filtered_activities:
+        activity_data = {}  # Create a dictionary to store activity data
 
-    activities = [name1, name2]
-    metrics = [metric1, metric2]
+        if metric == "kudos":
+            activity_metric = activity['kudos_count']
+        elif metric == "distance":
+            activity_metric = activity['distance']
+        elif metric == "time":
+            activity_metric = activity['moving_time']
+        elif metric == "average speed":
+            activity_metric = activity['average_speed']
+        elif metric == "max speed":
+            activity_metric = activity['max_speed']
+        else:
+            # Default to kudos
+            activity_metric = activity['kudos_count']
 
-    plt.bar(activities, metrics)
-    plt.xlabel('Activity')
-    plt.ylabel(metric_label)
-    plt.title('Comparison of Metrics')
-    plt.show()
+        # Don't sum speed metrics
+        if sum_activities == 0 or metric == "average speed" or metric == "max speed":
+            cumulative_sum_list.append(activity_metric)
+        else:
+            cumulative_sum += activity_metric
+            cumulative_sum_list.append(cumulative_sum)
 
-    return f"Activity 1: {name1}, {metric}: {metric1} | Activity 2: {name2}, {metric}: {metric2}"
+        # Add activity data to the dictionary
+        activity_data['name'] = activity['name']
+        activity_data['date'] = datetime.strptime(activity['start_date'], '%Y-%m-%dT%H:%M:%SZ').strftime('%b %d, %Y')        
+        activity_data['cumulative_sum'] = cumulative_sum_list[-1]  # Store the last cumulative sum
+        # Append the activity data dictionary to the list
+        activity_data_list.append(activity_data)
+
+    return activity_data_list
+
+@app.route('/make_chart', methods=['POST'])
+def make_chart():
+    data = request.form
+    metric = data.get('metric', 'distance')
+    data_type = data.get('activity_type', 'run')
+    timeframe = data.get('timeframe', 'last_month')
+    sum_activities = int(data.get('activity_sum', 0))
+
+    data = data_analysis(timeframe, data_type, metric, sum_activities)
+    data = data[::-1]
+
+    metrics = [activity['cumulative_sum'] for activity in data]
+    date = [activity['date'] for activity in data]
+    names = [activity['name'] for activity in data]
+
+    chart_data = {
+        'metrics': metrics,
+        'activities': date,
+        'names': names
+    }
+
+    return jsonify(chart_data), 200
 
 if __name__ == '__main__':
     app.run(port=5000)

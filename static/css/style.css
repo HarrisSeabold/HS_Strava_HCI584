@@ -110,8 +110,88 @@ body {
     background-color: transparent;
 }
 
+.chart-builder {
+    height: 100%;
+    background-color:#031827;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.quick-panel {
+    width: 200px;
+    height: 600px;
+    background-color: #031827;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    display: inline-block;
+    vertical-align: top; 
+}
+
+.dropdown-selector {
+    background-color: #031827;
+    width: 100%;
+    color:#fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: inline-block;
+    padding: 10px;
+    padding-left: 200px;
+    vertical-align: top; /* Aligns dropdown-selector to the top of the line */
+    /* You can remove the height property here, so it will automatically adjust its height based on the content */
+}
+
+/* Style the dropdown selectors */
+.dropdown-selector select {
+    padding: 8px;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #f1f1f1;
+    color: #031827;
+    margin-right: 10px;
+}
+
+/* Style the "Create Visualization" button */
+.dropdown-selector button {
+    padding: 8px 16px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    background-color: #F05023;
+    color: #fff;
+    cursor: pointer;
+}
+
+.dropdown-selector button:hover {
+    background-color: #fff;
+    color:#031827;
+}
+
+/* Adjust the spacing between dropdowns and the button */
+.dropdown-selector label {
+    margin-right: 20px;
+}
+
+.user-canvas {
+
+    padding: 10px;
+    background-color:white;
+    display: inline-block;
+    vertical-align: top; /* Aligns user-canvas to the top of the line */
+    flex: 1; /* To make user-canvas take up the remaining space horizontally */
+    /* You can remove the height property here, so it will automatically adjust its height based on the content */
+}
+
 .footer-block {
     display: flex;
+    align-items: flex-end;
     justify-content: space-between;
     align-items: center;
     height: 50px;
@@ -120,11 +200,13 @@ body {
   
   .left-footer-content {
     flex: 1;
+    display: block;
   }
   
   .right-footer-content {
     text-align: right;
-  }
+    padding-right: 10px;
+    }
 
 h1, h2, h3, h4, h5, h6, p {
     font-weight: bold;
