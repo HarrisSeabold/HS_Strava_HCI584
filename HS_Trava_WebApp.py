@@ -1,8 +1,7 @@
-from flask import Flask, render_template, request, session, jsonify
+from flask import Flask, render_template, request #, session
 import requests
 import urllib3
 import matplotlib.pyplot as plt
-from werkzeug.utils import secure_filename
 from datetime import datetime, timedelta
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -13,11 +12,7 @@ refresh = '918b3db21b495d1aaddeb81147d444d8718a5c23'
 
 app = Flask(__name__)
 
-# Details on the Secret Key: https://flask.palletsprojects.com/en/2.3.x/config/#SECRET_KEY
-# NOTE: The secret key is used to cryptographically-sign the cookies used for storing
-#       the session data.
-
-app.secret_key = 'SECRET_SAUCE'
+# app.secret_key = 'SECRET_SAUCE'
 
 @app.route('/')
 def index():
@@ -79,7 +74,9 @@ def data_analysis(timeframe="last_month", data_type="run", metric="distance", su
     else:
         filtered_activities = [activity for activity in my_dataset if datetime.strptime(activity['start_date'], '%Y-%m-%dT%H:%M:%SZ') > start_date]
 
-    # Calculate the total of the selected metric
+    filtered_activities = filtered_activities[::-1]
+
+    # Calculate the total of the selected metric in the reverse direction
     cumulative_sum_list = []
     cumulative_sum = 0
     activity_data_list = []
@@ -115,6 +112,9 @@ def data_analysis(timeframe="last_month", data_type="run", metric="distance", su
         # Append the activity data dictionary to the list
         activity_data_list.append(activity_data)
 
+    # Reverse the activity_data_list back to its original order
+    activity_data_list = activity_data_list[::-1]
+
     return activity_data_list
 
 @app.route('/make_chart', methods=['POST'])
@@ -129,16 +129,20 @@ def make_chart():
     data = data[::-1]
 
     metrics = [activity['cumulative_sum'] for activity in data]
-    date = [activity['date'] for activity in data]
-    names = [activity['name'] for activity in data]
+    dates = [activity['date'] for activity in data]
 
-    chart_data = {
-        'metrics': metrics,
-        'activities': date,
-        'names': names
-    }
+    # Create the chart using Matplotlib
+    plt.bar(dates, metrics)
+    plt.xlabel('Date')
+    plt.ylabel('Metrics')
+    plt.title('Metrics Over Time')
+    plt.xticks(rotation=45)
+    plt.tight_layout()
 
-    return jsonify(chart_data), 200
+    # Display the chart in a separate window
+    plt.show()
+
+    return render_template('index.html')
 
 if __name__ == '__main__':
     app.run(port=5000)
