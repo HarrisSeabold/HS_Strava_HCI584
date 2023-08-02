@@ -36,7 +36,7 @@ Follow this tutorial to get each piece of this information from Strava: [https:/
 Then place this information into lines 9, 10, and 11 of HS_Strava_WebApp.py
 
 
-![client info](https://github.com/HarrisSeabold/HS_Trava_HCI584/blob/main/Doc%20Images/Client%20Info.PNG)
+![client info](https://github.com/HarrisSeabold/HS_Trava_HCI584/blob/main/Doc/Client%20Info.PNG))
 
 ## Using the App
 
@@ -47,7 +47,7 @@ Go to http://127.0.0.1:5000/ to access the landing page of the HS_Trava web app.
 ### Landing Page
 The landing page welcomes you to the HS_Trava web app and showcases its main features. On this page, you'll find the following sections:
 
-![landing page](https://github.com/HarrisSeabold/HS_Trava_HCI584/blob/main/Doc%20Images/Landing%20Page.PNG)
+![landing page](https://github.com/HarrisSeabold/HS_Trava_HCI584/blob/main/Doc/Landing%20Page.PNG)
 
 **Title:** The title displays the HS_Trava logo and a brief description of the app's purpose.
 
@@ -57,7 +57,7 @@ The landing page welcomes you to the HS_Trava web app and showcases its main fea
 
 The dashboard page is the main application interface of the HS_Trava web app, where you can generate and visualize your fitness activity chart based on different parameters.
 
-![dashboard](https://github.com/HarrisSeabold/HS_Trava_HCI584/blob/main/Doc%20Images/Dashboard.PNG)
+![dashboard](https://github.com/HarrisSeabold/HS_Trava_HCI584/blob/main/Doc/Dashboard.PNG)
 
 #### Data Selection:
 
