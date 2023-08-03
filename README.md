@@ -33,14 +33,14 @@ _Refresh Token_
 
 Follow this tutorial to get each piece of this information from Strava: [https://towardsdatascience.com/using-the-strava-api-and-pandas-to-explore-your-activity-data-d94901d9bfde]
 
-Then place this information into lines 9, 10, and 11 of HS_Strava_WebApp.py
+Then place this information into lines 9, 10, and 11 of App.py
 
 
 ![client info](https://github.com/HarrisSeabold/HS_Trava_HCI584/blob/main/Doc/Client%20Info.PNG))
 
 ## Using the App
 
-Run the .py file and open a web browser
+Run the App.py file and open a web browser
 
 Go to http://127.0.0.1:5000/ to access the landing page of the HS_Trava web app.
 
