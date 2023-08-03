@@ -24,7 +24,7 @@ Before starting development, ensure you have Python installed (version 3.7 or hi
 
 The app can be deployed locally by running the main application file:
 
-`HS_Trava_WebApp.py`
+`App.py`
 
 Please note that this guide assumes the developer has already read the user's guide and understands how to run the web app locally.
 
@@ -40,15 +40,15 @@ Please note that this guide assumes the developer has already read the user's gu
 
 ### Code Flow:
 
-1. The main application file is `HS_Trava_WebApp.py`.
-2. When the user visits the homepage (`/`), the `index()` function in `HS_Trava_WebApp.py` renders the `landing.html` template.
+1. The main application file is `App.py`.
+2. When the user visits the homepage (`/`), the `index()` function in `App.py` renders the `landing.html` template.
 3. The user can click on the "dashboard" link to visit the dashboard (`/indexpage`).
-4. The `indexpage()` function in `app.py` renders the `index_CH.html` template with an empty chart (`img_tag=""`).
-5. When the user selects options and clicks the "Create Visualization" button, the `make_chart()` function in `HS_Trava_WebApp.py` is triggered.
+4. The `indexpage()` function in `App.py` renders the `index.html` template with an empty chart (`img_tag=""`).
+5. When the user selects options and clicks the "Create Visualization" button, the `make_chart()` function in `App.py` is triggered.
 6. The selected options are retrieved from the form data.
 7. The `data_analysis()` function performs data retrieval and analysis based on the selected options.
 8. The Matplotlib library is used to create a bar chart, and the chart is converted to a base64 image.
-9. The chart is then displayed on the dashboard (`index_CH.html`) using the `img_tag` variable.
+9. The chart is then displayed on the dashboard (`index.html`) using the `img_tag` variable.
 
 ## Known Issues
 
