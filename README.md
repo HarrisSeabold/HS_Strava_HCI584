@@ -5,7 +5,7 @@ HS_Trava is a web application that allows you to visualize your fitness activiti
 
 #### Requirements:
 
-_Python 3.x, Flask, Requests, Matplotlib_
+_Python 3.10, Flask, Requests, Matplotlib_
 
 _A Strava Account with logged activities_
 
@@ -74,8 +74,13 @@ The chart will be based on the data you've chosen and will display the selected 
 Displaying the Chart:
 
 The chart will appear just below the data selection section.
+
+![distance chart](https://github.com/HarrisSeabold/HS_Trava_HCI584/blob/main/Doc/MonthlyRunning.PNG)
+
 It will be displayed in a bar chart format, with the x-axis representing the date of each activity, and the y-axis showing the chosen metric's values.
 If you selected the "Sum Data" option, the chart will display the cumulative sum of the metric over time. Otherwise, each data point will represent an individual activity's metric value.
+
+![kudos chart](https://github.com/HarrisSeabold/HS_Trava_HCI584/blob/main/Doc/Kudos.PNG)
 
 #### Saving the Chart:
 
